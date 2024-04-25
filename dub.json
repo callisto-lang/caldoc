@@ -1,0 +1,9 @@
+{
+	"authors": [
+		"yeti0904"
+	],
+	"copyright": "Copyright © 2024, yeti0904",
+	"description": "Documentation generator for the Callisto programming language",
+	"license": "MIT",
+	"name": "caldoc"
+}

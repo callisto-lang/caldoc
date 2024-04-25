@@ -1,0 +1,16 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/caldoc
+caldoc.so
+caldoc.dylib
+caldoc.dll
+caldoc.a
+caldoc.lib
+caldoc-test-*
+*.exe
+*.pdb
+*.o
+*.obj
+*.lst
