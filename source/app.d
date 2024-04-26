@@ -41,6 +41,7 @@ void DocumentDir(string path) {
 		auto outFile = File(
 			format("%s/%s", outPath, entry.name.baseName().setExtension("md")), "w"
 		);
+		outFile.writefln("# %s", entry.name.baseName().stripExtension());
 
 		foreach (string line ; File(entry.name, "r").lines()) {
 			if (!line.startsWith("##")) continue;
