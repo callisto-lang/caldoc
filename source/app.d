@@ -61,9 +61,12 @@ Flags:
 	-od PATH          - Sets output directory for generated markdown files (no default)
 	--section/-s PATH - Adds a new section (a folder containing either .cal or .md files)
 	--help            - Shows this usage text
+	--index/-i PATH   - Sets index file (must be .md)
 ";
 
 int main(string[] args) {
+	string index;
+
 	if (args.length == 0) {
 		writeln("what");
 		return 1;
@@ -110,6 +113,27 @@ int main(string[] args) {
 				sections ~= args[i];
 				break;
 			}
+			case "-i":
+			case "--index": {
+				++ i;
+
+				if (i >= args.length) {
+					stderr.writeln("-od requires PATH parameter");
+					return 1;
+				}
+				if (index != "") {
+					stderr.writeln("Output directory set multiple times");
+					return 1;
+				}
+
+				index = args[i];
+
+				if (!isFile(index) || (index.extension() != ".md")) {
+					stderr.writeln("Invalid index path");
+					return 1;
+				}
+				break;
+			}
 			default: {
 				stderr.writefln("No such flag '%s'", args[i]);
 				return 1;
@@ -126,6 +150,8 @@ int main(string[] args) {
 			return 1;
 		}
 	}
+
+	std.file.write(format("%s/index.md", outputDir), readText(index));
 
 	return 0;
 }
