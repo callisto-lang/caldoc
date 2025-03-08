@@ -44,9 +44,9 @@ void DocumentDir(string path) {
 		outFile.writefln("# %s", entry.name.baseName().stripExtension());
 
 		foreach (string line ; File(entry.name, "r").lines()) {
-			if (!line.startsWith("##")) continue;
+			if (!line.strip().startsWith("##")) continue;
 
-			auto docLine = line[2 .. $].strip();
+			auto docLine = line.strip()[2 .. $].strip();
 			outFile.writeln(docLine);
 		}
 
